@@ -1,0 +1,25 @@
+services:
+  vlmcsd:
+    image: m8wat/vlmcsd:latest
+    container_name: vlmcsd
+    hostname: t5810-vlmcsd
+    networks:
+      vlmcsd:
+        ipv4_address: 10.58.22.2
+    ports:
+      - "1688:1688/tcp"
+    deploy:
+      resources:
+        limits:
+          memory: 32M
+        reservations:
+          memory: 6M
+    restart: always
+
+networks:
+  vlmcsd:
+    name: "vlmcsd_network"
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.58.22.0/29
